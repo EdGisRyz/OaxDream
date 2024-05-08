@@ -20,4 +20,8 @@ public class Tour {
     private String NombreDelTour;
     private String Detalles;
     private Integer Precio;
+    private Integer Cupo = 20;
+
+    //@ManyToMany(mappedBy = "tours")
+    //private Set<Usuario> usuarios = new HashSet<>();
 }

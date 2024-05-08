@@ -24,7 +24,7 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
     // http://localhost:8080/OaxacaDream-app/usuarios
-    @GetMapping("/Usuarios")
+    @GetMapping("/usuarios")
     public List<Usuario> obtenerUusarios(){
         List<Usuario> usuarios = this.usuarioServicio.listarUsuario();
         logger.info("Usuarios Obtenidos: ");
@@ -36,7 +36,7 @@ public class UsuarioControlador {
     private AutenticacionUsuarioServicio autenticacionUsuarioServicio;
 
     // http://localhost:8080/OaxacaDream-app/usuarios
-    @GetMapping("/AutenticacionUsuarios")
+    @GetMapping("/autenticacionUsuarios")
     public List<AutenticacionUsuario> optenerAutenticacionUsuarios(){
         List<AutenticacionUsuario> autenticacionUsuarios = this.autenticacionUsuarioServicio.listarAutenticacionUsuarios();
         logger.info("Autenticacion de Usuarios Obtenidos: ");

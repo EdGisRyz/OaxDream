@@ -21,7 +21,7 @@ public class TourControlador {
     @Autowired
     private TourServicio tourServicio;
     // http://localhost:8081/OaxacaDream-app/tours
-    @GetMapping("/Tours")
+    @GetMapping("/tours")
     public List<Tour> obtenerTours(){
         List<Tour> tours = this.tourServicio.listarTour();
         logger.info("Tours Obtenidos: ");

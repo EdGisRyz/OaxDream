@@ -15,14 +15,15 @@ public class UsuarioServicio implements IUsuarioServicio {
         return this.usuarioRepositorio.findAll();
     }
     @Override
-    public Usuario buscarProductoPorId(Integer idUusario) {
+    public Usuario buscarUsuarioPorId(Integer idUusario) {
         Usuario usuario =
                 this.usuarioRepositorio.findById(idUusario).orElse(null);
         return usuario;
     }
     @Override
-    public void guardarUsuario(Usuario usuario) {
-        this.usuarioRepositorio.save(usuario);
+    public Usuario guardarUsuario(Usuario usuario) {
+
+        return this.usuarioRepositorio.save(usuario);
     }
     @Override
     public void eliminarUsuarioPorId(Integer idUusario) {

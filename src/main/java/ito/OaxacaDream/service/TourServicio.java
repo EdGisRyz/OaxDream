@@ -24,9 +24,7 @@ public class TourServicio implements iTourServicio {
     }
 
     @Override
-    public void guardarTour(Tour tour) {
-        this.tourRepositorio.save(tour);
-    }
+    public Tour guardarTour(Tour tour) {return this.tourRepositorio.save(tour);  }
 
     @Override
     public void eliminarTourPorId(Integer idTour) {

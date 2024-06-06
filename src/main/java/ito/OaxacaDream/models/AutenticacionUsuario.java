@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class AutenticacionUsuario extends Usuario {
     private Integer IdUsuario;
     private String CorreoElectronico;
-    private String Contraseña;
+    private String Contrasena;
 }

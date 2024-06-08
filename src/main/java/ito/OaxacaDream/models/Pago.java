@@ -18,11 +18,15 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPago;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_reserva", referencedColumnName = "idReserva")
     private Reserva reserva;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_metodo_pago", referencedColumnName = "idMetodoPago")
     private MetodoPago metodoPago;
+
     private Double monto;
     private Date fechaPago;
     private String estado; //pagado - pendiente

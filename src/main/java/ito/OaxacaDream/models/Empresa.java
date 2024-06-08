@@ -1,9 +1,6 @@
 package ito.OaxacaDream.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +14,18 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEmpresa;
+
     private String nombre;
     private String slogan;
+    @Column(columnDefinition = "TEXT")
     private String vision;
+    @Column(columnDefinition = "TEXT")
     private String mision;
+    @Column(columnDefinition = "TEXT")
     private String valores;
+    @Column(columnDefinition = "TEXT")
     private String trayectoria;
+    @Column(columnDefinition = "TEXT")
     private String futuro;
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IMetodoPagoServicio {
 
     public List<MetodoPago> listarMetodos();
-    public MetodoPago buscarMetodoPorId(Integer idMetodo);
+    public MetodoPago buscarMetodoPorId(Integer idMetodoPago);
     public MetodoPago guardarMetodo(MetodoPago metodoPago);
-    public void eliminarMetodoPorId(Integer idMetodo);
+    public void eliminarMetodoPorId(Integer idMetodoPago);
 }

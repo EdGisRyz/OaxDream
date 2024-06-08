@@ -19,8 +19,8 @@ public class MetodoPagoServicio implements IMetodoPagoServicio{
     }
 
     @Override
-    public MetodoPago buscarMetodoPorId(Integer idMetodo) {
-        return this.metodoPagoRepositorio.findById(idMetodo).orElse(null);
+    public MetodoPago buscarMetodoPorId(Integer idMetodoPago) {
+        return this.metodoPagoRepositorio.findById(idMetodoPago).orElse(null);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class MetodoPagoServicio implements IMetodoPagoServicio{
     }
 
     @Override
-    public void eliminarMetodoPorId(Integer idMetodo) {
-        this.metodoPagoRepositorio.deleteById(idMetodo);
+    public void eliminarMetodoPorId(Integer idMetodoPago) {
+        this.metodoPagoRepositorio.deleteById(idMetodoPago);
     }
 }

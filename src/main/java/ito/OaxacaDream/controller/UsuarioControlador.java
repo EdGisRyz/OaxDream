@@ -14,7 +14,7 @@ import java.util.*;
 
 
 @RestController
-//http://localhost:8080/OaxacaDream-app
+//http://localhost:8080/oaxacaDream-app
 @RequestMapping("oaxacaDream-app")
 @CrossOrigin(value = "http://localhost:4200")
 public class UsuarioControlador {
@@ -29,7 +29,7 @@ public class UsuarioControlador {
     public List<Usuario> obtenerUsuarios(){
         List<Usuario> usuarios = this.usuarioServicio.listarUsuarios();
         logger.info("Usuarios Obtenidos: ");
-        usuarios.forEach((usuario -> logger.info(usuarios.toString())));
+        usuarios.forEach((usuario -> logger.info(usuario.toString())));
         return usuarios;
     }
 

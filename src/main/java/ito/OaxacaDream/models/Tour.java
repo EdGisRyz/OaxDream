@@ -17,9 +17,10 @@ public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTour;
+
     private String nombre;
     private String descripcion;
-    private Integer duracion; //horas
+    private String duracion; //horas
     private Double precio;
     private Integer capacidadMax;
     private Date fechaCreacion;

@@ -26,7 +26,7 @@ public class Reserva {
     private Tour tour;
 
     private Date fechaReserva;
-    private String estado;
+    private String estado; //pendiente, confirmada, cancelada
     private Integer cantidad;
 
 }

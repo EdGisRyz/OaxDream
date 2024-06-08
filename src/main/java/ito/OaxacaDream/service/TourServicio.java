@@ -7,20 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class TourServicio implements iTourServicio {
+public class TourServicio implements ITourServicio {
 
     @Autowired
     private TourRepositorio tourRepositorio;
+
     @Override
-    public List<Tour> listarTour() {
+    public List<Tour> listarTours() {
         return this.tourRepositorio.findAll();
     }
 
     @Override
     public Tour buscarTourPorId(Integer idTour) {
-        Tour tour =
-                this.tourRepositorio.findById(idTour).orElse(null);
-        return tour;
+        return this.tourRepositorio.findById(idTour).orElse(null);
     }
 
     @Override

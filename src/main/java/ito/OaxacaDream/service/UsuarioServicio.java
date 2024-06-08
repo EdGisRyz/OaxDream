@@ -10,23 +10,23 @@ import java.util.List;
 public class UsuarioServicio implements IUsuarioServicio {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
     @Override
-    public List<Usuario> listarUsuario() {
+    public List<Usuario> listarUsuarios() {
         return this.usuarioRepositorio.findAll();
     }
+
     @Override
-    public Usuario buscarUsuarioPorId(Integer idUusario) {
-        Usuario usuario =
-                this.usuarioRepositorio.findById(idUusario).orElse(null);
-        return usuario;
+    public Usuario buscarUsuarioPorId(Integer idUsuario) {
+        return this.usuarioRepositorio.findById(idUsuario).orElse(null);
     }
     @Override
     public Usuario guardarUsuario(Usuario usuario) {
-
         return this.usuarioRepositorio.save(usuario);
     }
+
     @Override
-    public void eliminarUsuarioPorId(Integer idUusario) {
-        this.usuarioRepositorio.deleteById(idUusario);
+    public void eliminarUsuarioPorId(Integer idUsuario) {
+        this.usuarioRepositorio.deleteById(idUsuario);
     }
 }

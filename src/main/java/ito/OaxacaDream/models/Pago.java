@@ -13,23 +13,22 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Pago {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUsuario;
+    private Integer idPago;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_reserva", referencedColumnName = "idReserva")
+    private Reserva reserva;
 
-    private String nombre;
-    private String apPaterno;
-    private String apMaterno;
-    private String email;
-    private String contrasena;
-    private String telefono;
-    private String tipo; //admin o cliente
-    private Date fechaRegistro;
-    private String direccion;
+    private MetodoPago metodoPago;
+    private Double monto;
+    private Date fechaPago;
+    private String estado; //pagado - pendiente
 
     @Lob
     @JsonIgnore
-    private Blob imgUsuario;
+    private Blob imgPago;
 
 }

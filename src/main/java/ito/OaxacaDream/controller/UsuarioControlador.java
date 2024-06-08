@@ -1,11 +1,6 @@
 package ito.OaxacaDream.controller;
 
-import ito.OaxacaDream.exceptions.cupoCompletoException;
-import ito.OaxacaDream.models.AutenticacionUsuario;
-import ito.OaxacaDream.models.Tour;
 import ito.OaxacaDream.models.Usuario;
-import ito.OaxacaDream.service.AutenticacionUsuarioServicio;
-import ito.OaxacaDream.service.TourServicio;
 import ito.OaxacaDream.service.UsuarioServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,35 +15,26 @@ import java.util.*;
 
 @RestController
 //http://localhost:8080/OaxacaDream-app
-@RequestMapping("OaxacaDream-app")
+@RequestMapping("oaxacaDream-app")
 @CrossOrigin(value = "http://localhost:4200")
 public class UsuarioControlador {
-    private static final Logger logger =
-            LoggerFactory.getLogger(UsuarioControlador.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioControlador.class);
+
     @Autowired
     private UsuarioServicio usuarioServicio;
-    // http://localhost:8080/OaxacaDream-app/usuarios
-
-    @Autowired
-    private AutenticacionUsuarioServicio autenticacionUsuarioServicio;
-    // http://localhost:8080/OaxacaDream-app/usuarios
-
-    @Autowired
-    private TourServicio tourServicio;
-
-
 
     //ENDPOINTS PARA USUARIOS
     @GetMapping("/usuarios")
-    public List<Usuario> obtenerUusarios(){
-        List<Usuario> usuarios = this.usuarioServicio.listarUsuario();
+    public List<Usuario> obtenerUsuarios(){
+        List<Usuario> usuarios = this.usuarioServicio.listarUsuarios();
         logger.info("Usuarios Obtenidos: ");
         usuarios.forEach((usuario -> logger.info(usuarios.toString())));
         return usuarios;
     }
 
     @GetMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> obtenerClientePorId(@PathVariable int id){
+    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable int id){
         Usuario usuario = this.usuarioServicio.buscarUsuarioPorId(id);
         if(usuario != null) {
             return ResponseEntity.ok(usuario);
@@ -57,13 +43,13 @@ public class UsuarioControlador {
         }
     }
 
-    @PostMapping(path = "/usuarios", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/usuarios")
     public ResponseEntity<Usuario> agregarUsuario(@RequestBody Usuario usuario){
         logger.info("Usuario A agregar: " + usuario);
         return ResponseEntity.ok(this.usuarioServicio.guardarUsuario(usuario));
     }
 
-    @PutMapping(path = "/usuarios/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/usuarios/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable int id, @RequestBody Usuario usuarioRecibido){
         Usuario usuario = this.usuarioServicio.buscarUsuarioPorId(id);
         if(usuario == null){
@@ -71,21 +57,14 @@ public class UsuarioControlador {
         }
         // Actualizar los campos que se permitan
         usuario.setNombre(usuarioRecibido.getNombre());
-        usuario.setApellido_Paterno(usuarioRecibido.getApellido_Paterno());
-        usuario.setApellido_Materno(usuarioRecibido.getApellido_Materno());
-        usuario.setCorreo_Electronico(usuarioRecibido.getCorreo_Electronico());
+        usuario.setApPaterno(usuarioRecibido.getApPaterno());
+        usuario.setApMaterno(usuarioRecibido.getApMaterno());
+        usuario.setEmail(usuarioRecibido.getEmail());
         usuario.setContrasena(usuarioRecibido.getContrasena());
         usuario.setTelefono(usuarioRecibido.getTelefono());
-
-        List<Tour> toursBd = this.tourServicio.listarTour();
-        Set<Tour> tours = usuarioRecibido.getTours();
-
-        Set<Tour> activos = new HashSet<>(toursBd);
-
-        toursBd.removeIf(tour -> !activos.contains(tour));
-        usuarioRecibido.setTours(tours);
-
-        usuario.setTours(usuarioRecibido.getTours());
+        usuario.setTipo(usuarioRecibido.getTipo());
+        usuario.setFechaRegistro(usuarioRecibido.getFechaRegistro());
+        usuario.setDireccion(usuarioRecibido.getDireccion());
 
         this.usuarioServicio.guardarUsuario(usuario);
         return ResponseEntity.ok(usuario);
@@ -101,16 +80,6 @@ public class UsuarioControlador {
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
-    }
-
-
-    //ENDPOINTS PARA AutenticacionUsuarios
-    @GetMapping("/autenticacionUsuarios")
-    public List<AutenticacionUsuario> optenerAutenticacionUsuarios(){
-        List<AutenticacionUsuario> autenticacionUsuarios = this.autenticacionUsuarioServicio.listarAutenticacionUsuarios();
-        logger.info("Autenticacion de Usuarios Obtenidos: ");
-        autenticacionUsuarios.forEach((autenticacionUsuario -> logger.info(autenticacionUsuarios.toString())));
-        return autenticacionUsuarios;
     }
 
 

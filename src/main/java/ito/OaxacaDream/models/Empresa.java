@@ -1,6 +1,5 @@
 package ito.OaxacaDream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,12 +12,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class DatosBancariosEmpresa {
+public class Empresa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdUsuario;
-    private String CorreoElectronico;
-    private String Contrasena;
+    private Integer idEmpresa;
+    private String nombre;
+    private String slogan;
+    private String vision;
+    private String mision;
+    private String valores;
+    private String trayectoria;
+    private String futuro;
 
 }

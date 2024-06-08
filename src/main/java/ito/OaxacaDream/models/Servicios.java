@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,12 +21,6 @@ public class Servicios {
     private Integer IdUsuario;
     private String NombreServicio;
     private String Descripcion;
-
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "UsuarioTour",
-            joinColumns = @JoinColumn(name = "IdUsuario"),
-            inverseJoinColumns = @JoinColumn(name = "IdTour"))
-    private Set<Tour> tours = new HashSet<>();
 
 }
 
